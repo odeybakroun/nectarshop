@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nectarshop/context/colors.dart';
-import 'package:nectarshop/context/routes_name.dart';
+import 'package:nectarshop/src/core/routes/routes.dart';
 import 'package:nectarshop/logo_grocery.dart';
 
 class LoginWithgoogle extends StatelessWidget {

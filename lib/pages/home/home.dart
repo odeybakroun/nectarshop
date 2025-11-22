@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:motion_tab_bar/MotionTabBar.dart';
 import 'package:motion_tab_bar/MotionTabBarController.dart';
 import 'package:nectarshop/context/colors.dart';
-import 'package:nectarshop/context/routes_name.dart';
+import 'package:nectarshop/src/core/routes/routes.dart';
 import 'package:nectarshop/pages/cart/cart.dart';
 import 'package:nectarshop/pages/data/products.dart';
 import 'package:nectarshop/pages/home/Pageviewapp.dart';

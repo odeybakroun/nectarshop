@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nectarshop/context/colors.dart';
-import 'package:nectarshop/context/routes_name.dart';
+import 'package:nectarshop/src/core/routes/routes.dart';
 
 class ContentIntrologin extends StatelessWidget {
   const ContentIntrologin({super.key});

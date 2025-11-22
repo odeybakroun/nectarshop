@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nectarshop/context/routes_name.dart';
+import 'package:nectarshop/src/core/routes/routes.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});

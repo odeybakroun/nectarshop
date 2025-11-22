@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nectarshop/boarding.dart';
 import 'package:nectarshop/context/colors.dart';
-import 'package:nectarshop/context/routes_handler.dart';
-import 'package:nectarshop/context/routes_name.dart';
-
+import 'package:nectarshop/src/core/routes/routes.dart';
+ 
 class FirstBoarding extends StatefulWidget {
   const FirstBoarding({super.key});
 
@@ -62,7 +61,7 @@ class _FirstBoardingState extends State<FirstBoarding> {
             ),
           ),
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 10 ),
 
           // ✅ الدائرة مع الزر في المنتصف
           Stack(

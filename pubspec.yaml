@@ -32,9 +32,12 @@ dependencies:
   animated_icon_button: ^1.0.2
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
+  dio: ^5.9.0
   flutter:
     sdk: flutter
+  flutter_screenutil: ^5.9.3
   flutter_svg: ^2.2.2
+  get_it: ^9.0.5
   like_button: ^2.1.0
   motion_tab_bar: ^2.0.4
   motion_tab_bar_v2: ^0.4.0

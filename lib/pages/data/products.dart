@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nectarshop/context/routes_name.dart';
+import 'package:nectarshop/src/core/routes/routes.dart';
 
 class dataProduct {
   final String image;

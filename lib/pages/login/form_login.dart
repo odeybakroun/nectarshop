@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nectarshop/context/routes_name.dart';
+import 'package:nectarshop/src/core/config/config.dart';
+import 'package:nectarshop/src/core/routes/routes.dart';
+import 'package:nectarshop/src/core/utils/AppValidators.dart';
+import 'package:nectarshop/src/features/users/domain/entities/login_entities.dart';
+import 'package:nectarshop/src/features/users/domain/usecases/login_usecase.dart';
 
 class FormLogin extends StatefulWidget {
   FormLogin({super.key});
@@ -10,14 +14,26 @@ class FormLogin extends StatefulWidget {
 
 class _LoginFormState extends State<FormLogin> {
   final _formKey = GlobalKey<FormState>();
-  void login() {
+  void login({
+    required TextEditingController emailController,
+    required TextEditingController passwordController,
+  }) async {
     if (_formKey.currentState!.validate()) {
-Navigator.pushNamedAndRemoveUntil(
-  context,
-  RoutesName.Login, // الصفحة الجديدة
-  (Route<dynamic> route) => false, // إزالة كل الصفحات السابقة
-);
-      setState(() {});
+      try {
+        var login = getit<LoginUsecase>();
+        var response = await login(
+          LoginEntity(
+            email: emailController.text,
+            password: passwordController.text,
+          ),
+        );
+        Navigator.pushNamed(context, RoutesName.Home);
+        print(
+          "${response.email} email ${emailController.text} ${response.firstName}  password ${passwordController.text}",
+        );
+      } catch (e) {
+        print("catch $e");
+      }
     }
   }
 
@@ -42,14 +58,7 @@ Navigator.pushNamedAndRemoveUntil(
               ),
             ),
             validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your email';
-              } else if (!RegExp(
-                r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}$',
-              ).hasMatch(value)) {
-                return 'Enter a valid email';
-              }
-              return null;
+            return AppValidators.email(value);
             },
           ),
           const SizedBox(height: 16),
@@ -57,7 +66,10 @@ Navigator.pushNamedAndRemoveUntil(
           // 🔒 حقل الباسورد
           TextFormField(
             controller: _passwordController,
-            onFieldSubmitted: (value) => login(),
+            onFieldSubmitted: (value) => login(
+              emailController: _emailController,
+              passwordController: _passwordController,
+            ),
             obscureText: _obscurePassword,
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
@@ -78,12 +90,7 @@ Navigator.pushNamedAndRemoveUntil(
               ),
             ),
             validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your password';
-              } else if (value.length < 6) {
-                return 'Password must be at least 6 characters';
-              }
-              return null;
+              return AppValidators.password(value);
             },
           ),
           const SizedBox(height: 24),
@@ -91,7 +98,10 @@ Navigator.pushNamedAndRemoveUntil(
           // 🔘 زر تسجيل الدخول
           ElevatedButton(
             onPressed: () {
-              login();
+              login(
+                emailController: _emailController,
+                passwordController: _passwordController,
+              );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
